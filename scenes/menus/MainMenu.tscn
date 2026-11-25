@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cccywf2wyl2ft"]
+
+[ext_resource type="FontFile" uid="uid://bp7d65vjww0b2" path="res://assets/fonts/Nunito.ttf" id="1_bqojv"]
+[ext_resource type="Theme" uid="uid://614oem2kyqbh" path="res://scenes/menus/themes/MenuButtonTheme.tres" id="1_wlpbi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46a5j"]
+bg_color = Color(0.5014065, 0.50140655, 0.50140643, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb5j2"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 0.3137255)
+
+[sub_resource type="Theme" id="Theme_wxx3c"]
+default_font = ExtResource("1_bqojv")
+default_font_size = 60
+
+[sub_resource type="Theme" id="Theme_j38yt"]
+default_font = ExtResource("1_bqojv")
+default_font_size = 56
+
+[node name="MainMenu" type="Control" unique_id=1565456027]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Background" type="Panel" parent="." unique_id=1258280025]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_46a5j")
+
+[node name="PanelContainer" type="PanelContainer" parent="Background" unique_id=1402659844]
+layout_mode = 0
+offset_left = 90.72
+offset_right = 334.71997
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eb5j2")
+
+[node name="MainContainer" type="VBoxContainer" parent="Background/PanelContainer" unique_id=743798121]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Title" type="VBoxContainer" parent="Background/PanelContainer/MainContainer" unique_id=1532360219]
+layout_mode = 2
+theme_override_constants/separation = -12
+
+[node name="Motion" type="Label" parent="Background/PanelContainer/MainContainer/Title" unique_id=589544919]
+layout_mode = 2
+theme = SubResource("Theme_wxx3c")
+text = "Motion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tracker" type="Label" parent="Background/PanelContainer/MainContainer/Title" unique_id=2037424943]
+layout_mode = 2
+theme = SubResource("Theme_j38yt")
+text = "Tracker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Background/PanelContainer/MainContainer" unique_id=1143981528]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(-0.91, 1)
+
+[node name="StartButton" type="Button" parent="Background/PanelContainer/MainContainer" unique_id=1594661884]
+layout_mode = 2
+theme = ExtResource("1_wlpbi")
+theme_type_variation = &"FlatButton"
+text = "Начать"
+
+[node name="SettingsButton" type="Button" parent="Background/PanelContainer/MainContainer" unique_id=1343051571]
+layout_mode = 2
+theme = ExtResource("1_wlpbi")
+theme_type_variation = &"FlatButton"
+text = "Настройки"
+
+[node name="AboutButton" type="Button" parent="Background/PanelContainer/MainContainer" unique_id=1591683258]
+layout_mode = 2
+theme = ExtResource("1_wlpbi")
+theme_type_variation = &"FlatButton"
+text = "О программе"
+
+[node name="ExitButton" type="Button" parent="Background/PanelContainer/MainContainer" unique_id=179832604]
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("1_wlpbi")
+theme_type_variation = &"FlatButton"
+text = "Выход"

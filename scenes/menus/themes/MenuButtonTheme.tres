@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://614oem2kyqbh"]
+
+[ext_resource type="FontFile" uid="uid://cyt0xm0khqxaq" path="res://assets/fonts/Huninn-Regular.ttf" id="1_qbw8k"]
+
+[resource]
+default_font = ExtResource("1_qbw8k")
+default_font_size = 24
