@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c8o5qnw77nm8o"]
+
+[ext_resource type="Script" uid="uid://dngqtsycd2ne0" path="res://scenes/components/character_card.gd" id="1_quaee"]
+[ext_resource type="FontFile" uid="uid://cyt0xm0khqxaq" path="res://assets/fonts/Huninn-Regular.ttf" id="2_r32ty"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n6xb"]
+bg_color = Color(0.09019608, 0.09019608, 0.09019608, 0.19607843)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_r32ty"]
+font = ExtResource("2_r32ty")
+
+[node name="CharacterCard" type="Button" unique_id=818524619]
+offset_right = 200.0
+offset_bottom = 250.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6n6xb")
+script = ExtResource("1_quaee")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1593566558]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AvatarRect" type="TextureRect" parent="VBoxContainer" unique_id=966485245]
+custom_minimum_size = Vector2(110, 210)
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=615368239]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_r32ty")
+horizontal_alignment = 1
+vertical_alignment = 1
