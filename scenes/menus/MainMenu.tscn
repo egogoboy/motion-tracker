@@ -20,13 +20,13 @@ default_font_size = 60
 default_font = ExtResource("1_bqojv")
 default_font_size = 56
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_krskw"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cty7a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p0il0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41ciy"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_krskw"]
 
 [sub_resource type="Environment" id="Environment_p0il0"]
 ambient_light_source = 2
@@ -56,56 +56,96 @@ offset_right = 334.71997
 offset_bottom = 720.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_eb5j2")
 
-[node name="MainContainer" type="VBoxContainer" parent="Background/PanelContainer" unique_id=743798121]
+[node name="MarginContainer" type="MarginContainer" parent="Background/PanelContainer" unique_id=682530315]
+layout_mode = 2
+theme_override_constants/margin_top = 145
+
+[node name="MainContainer" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer" unique_id=743798121]
 layout_mode = 2
 theme_override_constants/separation = 18
-alignment = 1
 
-[node name="Title" type="VBoxContainer" parent="Background/PanelContainer/MainContainer" unique_id=1532360219]
+[node name="Title" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer/MainContainer" unique_id=1532360219]
 layout_mode = 2
 theme_override_constants/separation = -12
 
-[node name="Motion" type="Label" parent="Background/PanelContainer/MainContainer/Title" unique_id=589544919]
+[node name="Motion" type="Label" parent="Background/PanelContainer/MarginContainer/MainContainer/Title" unique_id=589544919]
 layout_mode = 2
 theme = SubResource("Theme_wxx3c")
 text = "Motion"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Tracker" type="Label" parent="Background/PanelContainer/MainContainer/Title" unique_id=2037424943]
+[node name="Tracker" type="Label" parent="Background/PanelContainer/MarginContainer/MainContainer/Title" unique_id=2037424943]
 layout_mode = 2
 theme = SubResource("Theme_j38yt")
 text = "Tracker"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Background/PanelContainer/MainContainer" unique_id=1143981528]
+[node name="HSeparator" type="HSeparator" parent="Background/PanelContainer/MarginContainer/MainContainer" unique_id=1143981528]
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_scale = Vector2(-0.91, 1)
 
-[node name="StartButton" type="Button" parent="Background/PanelContainer/MainContainer" unique_id=1594661884]
+[node name="ChooseButtons" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer/MainContainer" unique_id=757269644]
+visible = false
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="Background/PanelContainer/MarginContainer/MainContainer/ChooseButtons" unique_id=1840639927]
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("1_wlpbi")
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_krskw")
+text = "Начать трекинг"
+
+[node name="CharacterButton" type="Button" parent="Background/PanelContainer/MarginContainer/MainContainer/ChooseButtons" unique_id=1037859508]
+layout_mode = 2
+theme = ExtResource("1_wlpbi")
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cty7a")
+text = "Персонаж"
+
+[node name="BackgroundButton" type="Button" parent="Background/PanelContainer/MarginContainer/MainContainer/ChooseButtons" unique_id=1266220071]
+layout_mode = 2
+theme = ExtResource("1_wlpbi")
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_p0il0")
+text = "Фон"
+
+[node name="BackButton" type="Button" parent="Background/PanelContainer/MarginContainer/MainContainer/ChooseButtons" unique_id=1520764278]
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("1_wlpbi")
+theme_type_variation = &"FlatButton"
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_krskw")
+text = "Назад"
+
+[node name="MainButtons" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer/MainContainer" unique_id=745149250]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Background/PanelContainer/MarginContainer/MainContainer/MainButtons" unique_id=1594661884]
 layout_mode = 2
 theme = ExtResource("1_wlpbi")
 theme_type_variation = &"FlatButton"
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_cty7a")
 text = "Начать"
 
-[node name="SettingsButton" type="Button" parent="Background/PanelContainer/MainContainer" unique_id=1343051571]
+[node name="SettingsButton" type="Button" parent="Background/PanelContainer/MarginContainer/MainContainer/MainButtons" unique_id=1343051571]
 layout_mode = 2
 theme = ExtResource("1_wlpbi")
 theme_type_variation = &"FlatButton"
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_p0il0")
 text = "Настройки"
 
-[node name="AboutButton" type="Button" parent="Background/PanelContainer/MainContainer" unique_id=1591683258]
+[node name="AboutButton" type="Button" parent="Background/PanelContainer/MarginContainer/MainContainer/MainButtons" unique_id=1591683258]
 layout_mode = 2
 theme = ExtResource("1_wlpbi")
 theme_type_variation = &"FlatButton"
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_41ciy")
 text = "О программе"
 
-[node name="ExitButton" type="Button" parent="Background/PanelContainer/MainContainer" unique_id=179832604]
+[node name="ExitButton" type="Button" parent="Background/PanelContainer/MarginContainer/MainContainer/MainButtons" unique_id=179832604]
 layout_mode = 2
 offset_transform_enabled = true
 theme = ExtResource("1_wlpbi")
@@ -303,9 +343,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8585223, 1.8698965, 0.64525
 light_color = Color(0.9868359, 0.9765399, 0.9631532, 1)
 light_energy = 3.0
 
-[connection signal="pressed" from="Background/PanelContainer/MainContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Background/PanelContainer/MainContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Background/PanelContainer/MainContainer/AboutButton" to="." method="_on_about_button_pressed"]
-[connection signal="pressed" from="Background/PanelContainer/MainContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/MainContainer/ChooseButtons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/MainContainer/MainButtons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/MainContainer/MainButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/MainContainer/MainButtons/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/MainContainer/MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 
 [editable path="SubViewportContainer/SubViewport/WorldEnvironment/Michelle_Idle"]
