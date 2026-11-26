@@ -10,11 +10,11 @@ extends Control
 @onready var backgrounds_grid: VBoxContainer = $Background/PanelContainer/MarginContainer/BackgroundContainer
 
 @onready var actual_cards_grid: GridContainer = $Background/PanelContainer/MarginContainer/CharacterContainer/CharacterGridContainer
-@onready var character_holder: Node3D = $SubViewportContainer/SubViewport/WorldEnvironment/Michelle_Idle
+@onready var character_holder: Node3D = $SubViewportContainer/SubViewport/WorldEnvironment/CharacterHolder
 
 @export var character_models: Array[PackedScene] = []
 
-const IDLE_ANIM: Animation = preload("res://assets/animations/IdleMixamoAnimation.res")
+const IDLE_LIB: AnimationLibrary = preload("res://assets/animations/Idle.fbx")
 
 const CAM_POS_NORMAL := Vector3(0.75, 1.7, 1.15)
 const CAM_ROT_NORMAL := Vector3(-20.0, 45.0, 0.0)
@@ -31,31 +31,29 @@ func _ready() -> void:
 	for i in cards.size():
 		if cards[i] is BaseButton:
 			cards[i].pressed.connect(_on_character_selected.bind(i))
-
-
-func _fit_character_to_floor(model: Node3D, target_height: float) -> void:
-	var meshes := model.find_children("*", "MeshInstance3D", true, false)
-	if meshes.is_empty():
-		return
-		
-	# 1. Находим реальную высоту модели по всем её мешам
-	var min_y := INF
-	var max_y := -INF
+			
+	var new_char := character_models[0].instantiate()
+	character_holder.add_child(new_char)
 	
-	for mesh: MeshInstance3D in meshes:
-		var aabb := mesh.get_aabb()
-		# Переводим границы меша в локальные координаты корня модели
-		var local_min := model.to_local(mesh.to_global(aabb.position))
-		var local_max := model.to_local(mesh.to_global(aabb.end))
-		min_y = min(min_y, local_min.y, local_max.y)
-		max_y = max(max_y, local_min.y, local_max.y)
+	play_animation(new_char)
+	
+
+func play_animation(new_char: Node3D) -> void:
+	var anim_player := new_char.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if not anim_player:
+		anim_player = AnimationPlayer.new()
+		new_char.add_child(anim_player)
 		
-	var current_height := max_y - min_y
-	if current_height > 0.01:
-		var factor := target_height / current_height
-		model.scale = Vector3.ONE * factor
-		# 2. Сдвигаем модель по Y так, чтобы самая нижняя точка (пятки) оказалась ровно на полу (Y = 0)
-		model.position.y = -min_y * factor
+	anim_player.root_node = anim_player.get_path_to(new_char)
+	
+	# 2. Добавляем загруженную библиотеку напрямую
+	if anim_player.has_animation_library("custom"):
+		anim_player.remove_animation_library("custom")
+	anim_player.add_animation_library("custom", IDLE_LIB)
+	
+	# 3. Запускаем первую анимацию из этой библиотеки (обычно она называется "mixamo_com" или так, как вы её переименовали при импорте)
+	var anim_name := IDLE_LIB.get_animation_list()[0]
+	anim_player.play("custom/" + anim_name)	
 
 
 func open_selection(is_character_mode: bool) -> void:
@@ -93,6 +91,13 @@ func close_selection() -> void:
 	main_container.show()
 
 
+func print_tre(node: Node, indent: int = 0) -> void:
+	print(" ".repeat(indent) + node.name + " [" + node.get_class() + "]")
+
+	for child in node.get_children():
+		print_tre(child, indent + 2)
+
+
 func _on_character_selected(index: int) -> void:
 	$ButtonPressedPlayer.play()
 	
@@ -108,21 +113,7 @@ func _on_character_selected(index: int) -> void:
 	var new_char := character_models[index].instantiate()
 	character_holder.add_child(new_char)
 	
-	# 3. Запускаем сохранённую idle-анимацию
-	var anim_player := new_char.find_child("AnimationPlayer", true, false) as AnimationPlayer
-	if not anim_player:
-		anim_player = AnimationPlayer.new()
-		new_char.add_child(anim_player)
-		
-	anim_player.root_node = anim_player.get_path_to(new_char)
-		
-	var lib := AnimationLibrary.new()
-	lib.add_animation("idle", IDLE_ANIM)
-	
-	if anim_player.has_animation_library("custom"):
-		anim_player.remove_animation_library("custom")
-	anim_player.add_animation_library("custom", lib)
-	anim_player.play("custom/idle")
+	play_animation(new_char)
 
 
 func show_screen(target: Control) -> void:
