@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bx3ro70myvwxn"]
+
+[ext_resource type="PackedScene" uid="uid://bstk5x8leovdt" path="res://assets/scenes/Apartment.glb" id="1_bvorw"]
+
+[node name="Apartment" unique_id=793242801 instance=ExtResource("1_bvorw")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -3.463472, 0.9777763, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="150" unique_id=1217292760]
+transform = Transform3D(1.4285715, 0, 0, 0, -0.0016456612, 1.4285705, 0, -1.4285705, -0.0016456612, 0.6077099, 1.814061, -1.1197184)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." index="151" unique_id=1122769628]
+transform = Transform3D(1.4285715, 0, 0, 0, -0.0016456612, 1.4285705, 0, -1.4285705, -0.0016456612, 0.6077099, 1.8140613, -3.3851447)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="." index="152" unique_id=822497860]
+transform = Transform3D(1.4285715, 0, 0, 0, -0.0016456612, 1.4285705, 0, -1.4285705, -0.0016456612, 0.6077099, 1.8140613, -2.3040287)
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." index="153" unique_id=2099170063]
+transform = Transform3D(0.039053343, 0, 1.4280375, 0, 1.4285715, 0, -1.4280375, 0, 0.039053343, 14.499754, 0.8963152, 0.47653404)
+light_energy = 2.721
+area_range = 34.174
+area_attenuation = 1.079
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="154" unique_id=179789148]
+transform = Transform3D(1.4285715, 0, 0, 0, 1.4285715, 0, 0, 0, 1.4285715, 8.073028, 1.130395, 5.1615515)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." index="155" unique_id=2136910109]
+transform = Transform3D(1.4285715, 0, 0, 0, 1.4285715, 0, 0, 0, 1.4285715, 7.1926646, 1.130395, -3.6835415)

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dw5g7whhm8s8l"]
+
+[ext_resource type="PackedScene" uid="uid://ccyyoxli0q7ui" path="res://assets/scenes/Desert.glb" id="1_1bh55"]
+
+[node name="Desert" unique_id=747520371 instance=ExtResource("1_1bh55")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 42.12773, -9.4048395, 51.34307)
+
+[node name="Node" parent="." index="0" unique_id=482584717]
+transform = Transform3D(-0.2418355, 0, 0.06336867, 0, 0.25, 0, -0.06336867, 0, -0.2418355, -471.0931, 81.49624, -587.8871)
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." index="1" unique_id=1647807722]
+transform = Transform3D(10, 0, 0, 0, -0.19353174, 9.998127, 0, -9.998127, -0.19353174, -200.21765, 786.79065, -178.07526)
+light_color = Color(0.90352994, 0.7468152, 0.6021147, 1)
+light_energy = 1500.0
+area_range = 116.466
+area_size = Vector2(200, 200)

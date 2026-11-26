@@ -17,9 +17,24 @@
 [ext_resource type="Texture2D" uid="uid://dn7pkecak0q4c" path="res://assets/images/choose_character/AjButtonImage.png" id="7_cnovr"]
 [ext_resource type="PackedScene" uid="uid://dtqmohp546c3c" path="res://assets/models/Doozy.fbx" id="7_gpmqb"]
 [ext_resource type="Texture2D" uid="uid://dqm8pw1ir3oln" path="res://assets/images/choose_character/DoozyButtonImage.png" id="8_h1ryq"]
+[ext_resource type="PackedScene" uid="uid://bx3ro70myvwxn" path="res://assets/scenes/apartment.tscn" id="8_njcot"]
+[ext_resource type="PackedScene" uid="uid://bliv00hs8m4cr" path="res://assets/scenes/basketball_court.tscn" id="9_njcot"]
+[ext_resource type="PackedScene" uid="uid://dw5g7whhm8s8l" path="res://assets/scenes/desert.tscn" id="10_njcot"]
+[ext_resource type="PackedScene" uid="uid://doqq0bco8y1dh" path="res://assets/scenes/nature.tscn" id="11_njcot"]
+[ext_resource type="Texture2D" uid="uid://wjd26jyomgmg" path="res://assets/images/choose_background/GrayBackground.png" id="17_gpmqb"]
+[ext_resource type="Texture2D" uid="uid://ddc4cs4rwrhkh" path="res://assets/images/choose_background/CameraBackground.png" id="18_xdrf4"]
+[ext_resource type="Texture2D" uid="uid://po2g5nyaaxir" path="res://assets/images/choose_background/AppartmentBackground.png" id="19_4achk"]
+[ext_resource type="Texture2D" uid="uid://bv5nlvomspyaa" path="res://assets/images/choose_background/BasketballCourtBackground.png" id="20_magl1"]
+[ext_resource type="Texture2D" uid="uid://bi010qedaci0b" path="res://assets/images/choose_background/DesserBackground.png" id="21_njcot"]
+[ext_resource type="Texture2D" uid="uid://ch12num3kioj7" path="res://assets/images/choose_background/NatureBackground.png" id="22_5i1c4"]
+
+[sub_resource type="Environment" id="Environment_p0il0"]
+ambient_light_source = 2
+ambient_light_color = Color(0.8838944, 0.8146759, 0.75980675, 1)
+ambient_light_energy = 0.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46a5j"]
-bg_color = Color(0.5014065, 0.50140655, 0.50140643, 1)
+bg_color = Color(0.5019608, 0.5019608, 0.5019608, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb5j2"]
 bg_color = Color(0.078431375, 0.078431375, 0.078431375, 0.3137255)
@@ -44,10 +59,9 @@ default_font_size = 56
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41ciy"]
 
-[sub_resource type="Environment" id="Environment_p0il0"]
-ambient_light_source = 2
-ambient_light_color = Color(0.8838944, 0.8146759, 0.75980675, 1)
-ambient_light_energy = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tgh1"]
+shader = ExtResource("2_p4qar")
+shader_parameter/corner_radius = 0.12
 
 [node name="MainMenu" type="Control" unique_id=1565456027]
 layout_mode = 3
@@ -58,6 +72,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ldf1p")
 character_models = Array[PackedScene]([ExtResource("2_h1ryq"), ExtResource("3_lffep"), ExtResource("4_5gmvy"), ExtResource("5_2trkh"), ExtResource("6_yt4ys"), ExtResource("7_gpmqb")])
+background_scenes = Array[PackedScene]([null, null, ExtResource("8_njcot"), ExtResource("9_njcot"), ExtResource("10_njcot"), ExtResource("11_njcot")])
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1454420335]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.003
+anchor_right = 0.9990001
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -0.16000009
+offset_right = 0.27990723
+offset_bottom = 2.0
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=363682672]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=838726219]
+environment = SubResource("Environment_p0il0")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/WorldEnvironment" unique_id=1487597070]
+transform = Transform3D(0.7071068, -0.24184474, 0.66446304, 0, 0.9396926, 0.34202012, -0.7071068, -0.24184474, 0.66446304, 0.75, 1.7, 1.15)
+fov = 39.9
+
+[node name="AreaLight3D" type="AreaLight3D" parent="SubViewportContainer/SubViewport/WorldEnvironment" unique_id=459695712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8585223, 1.8698965, 0.6452571)
+light_color = Color(0.9868359, 0.9765399, 0.9631532, 1)
+light_energy = 3.0
+
+[node name="CharacterHolder" type="Node3D" parent="SubViewportContainer/SubViewport/WorldEnvironment" unique_id=1428911252]
+transform = Transform3D(0.5247114, 0, 0.8512802, 0, 1, 0, -0.8512802, 0, 0.5247114, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/WorldEnvironment/CharacterHolder" unique_id=623055716]
+
+[node name="BackgroundHolder" type="Node3D" parent="SubViewportContainer/SubViewport/WorldEnvironment" unique_id=1971400068]
 
 [node name="Background" type="Panel" parent="." unique_id=1258280025]
 layout_mode = 1
@@ -235,28 +287,55 @@ text = "Выход"
 [node name="BackgroundContainer" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer" unique_id=688537391]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="BackgroundGridContainer" type="GridContainer" parent="Background/PanelContainer/MarginContainer/BackgroundContainer" unique_id=1384164850]
-visible = false
 layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
 
 [node name="BackgroundButton1" type="TextureButton" parent="Background/PanelContainer/MarginContainer/BackgroundContainer/BackgroundGridContainer" unique_id=1205293607]
+material = SubResource("ShaderMaterial_2tgh1")
+custom_maximum_size = Vector2(120, 120)
 layout_mode = 2
+texture_normal = ExtResource("17_gpmqb")
+stretch_mode = 0
 
 [node name="BackgroundButton2" type="TextureButton" parent="Background/PanelContainer/MarginContainer/BackgroundContainer/BackgroundGridContainer" unique_id=1303984420]
+material = SubResource("ShaderMaterial_2tgh1")
+custom_maximum_size = Vector2(120, 120)
 layout_mode = 2
+texture_normal = ExtResource("18_xdrf4")
+stretch_mode = 0
 
 [node name="BackgroundButton3" type="TextureButton" parent="Background/PanelContainer/MarginContainer/BackgroundContainer/BackgroundGridContainer" unique_id=66191796]
+material = SubResource("ShaderMaterial_2tgh1")
+custom_maximum_size = Vector2(120, 120)
 layout_mode = 2
+texture_normal = ExtResource("19_4achk")
+stretch_mode = 0
 
 [node name="BackgroundButton4" type="TextureButton" parent="Background/PanelContainer/MarginContainer/BackgroundContainer/BackgroundGridContainer" unique_id=38408820]
+material = SubResource("ShaderMaterial_2tgh1")
+custom_maximum_size = Vector2(120, 120)
 layout_mode = 2
+texture_normal = ExtResource("20_magl1")
+stretch_mode = 0
 
 [node name="BackgroundButton5" type="TextureButton" parent="Background/PanelContainer/MarginContainer/BackgroundContainer/BackgroundGridContainer" unique_id=596021498]
+material = SubResource("ShaderMaterial_2tgh1")
+custom_maximum_size = Vector2(120, 120)
 layout_mode = 2
+texture_normal = ExtResource("21_njcot")
+stretch_mode = 0
 
 [node name="BackgroundButton6" type="TextureButton" parent="Background/PanelContainer/MarginContainer/BackgroundContainer/BackgroundGridContainer" unique_id=1950927869]
+material = SubResource("ShaderMaterial_2tgh1")
+custom_maximum_size = Vector2(120, 120)
 layout_mode = 2
+texture_normal = ExtResource("22_5i1c4")
+stretch_mode = 0
 
 [node name="BackgroundsBackButton" type="Button" parent="Background/PanelContainer/MarginContainer/BackgroundContainer" unique_id=1830635783]
 layout_mode = 2
@@ -268,41 +347,6 @@ text = "Назад"
 
 [node name="ButtonPressedPlayer" type="AudioStreamPlayer" parent="." unique_id=1776047277]
 stream = ExtResource("4_tyyoy")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1454420335]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.003
-anchor_right = 0.9990001
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -0.16000009
-offset_right = 0.27990723
-offset_bottom = 2.0
-mouse_filter = 2
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=363682672]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1280, 720)
-render_target_update_mode = 4
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=838726219]
-environment = SubResource("Environment_p0il0")
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/WorldEnvironment" unique_id=1487597070]
-transform = Transform3D(0.7071068, -0.24184474, 0.66446304, 0, 0.9396926, 0.34202012, -0.7071068, -0.24184474, 0.66446304, 0.75, 1.7, 1.15)
-fov = 39.9
-
-[node name="AreaLight3D" type="AreaLight3D" parent="SubViewportContainer/SubViewport/WorldEnvironment" unique_id=459695712]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8585223, 1.8698965, 0.6452571)
-light_color = Color(0.9868359, 0.9765399, 0.9631532, 1)
-light_energy = 3.0
-
-[node name="CharacterHolder" type="Node3D" parent="SubViewportContainer/SubViewport/WorldEnvironment" unique_id=1428911252]
-transform = Transform3D(0.5247114, 0, 0.8512802, 0, 1, 0, -0.8512802, 0, 0.5247114, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/WorldEnvironment/CharacterHolder" unique_id=623055716]
 
 [connection signal="pressed" from="Background/PanelContainer/MarginContainer/CharacterContainer/CharactersBackButton" to="." method="_on_characters_back_button_pressed"]
 [connection signal="pressed" from="Background/PanelContainer/MarginContainer/MainContainer/ChooseButtons/StartTrackingButton" to="." method="_on_start_tracking_button_pressed"]

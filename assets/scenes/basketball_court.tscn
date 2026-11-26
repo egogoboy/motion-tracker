@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bliv00hs8m4cr"]
+
+[ext_resource type="PackedScene" uid="uid://bw6780w1j526u" path="res://assets/scenes/Basketball Court.glb" id="1_fmggq"]
+
+[sub_resource type="Environment" id="Environment_eb5j2"]
+background_mode = 1
+ambient_light_energy = 2.0
+
+[node name="Basketball Court" unique_id=686527374 instance=ExtResource("1_fmggq")]
+transform = Transform3D(0.86299866, 0, 0.5052062, 0, 1, 0, -0.5052062, 0, 0.86299866, 4.227, -0.208, 7.105)
+
+[node name="BasketBallCourt_Mesh" parent="." index="0" unique_id=1082004323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649631, 0, -16.923317)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="1" unique_id=1119418448]
+transform = Transform3D(0.8829476, 0.46947157, 2.0521252e-08, 0, -4.3711385e-08, 1, 0.46947157, -0.8829476, -3.8594862e-08, -0.14624847, 4.759446, -8.68398)
+light_energy = 12.0
+spot_range = 5.168
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." index="2" unique_id=1583529344]
+transform = Transform3D(0.999135, 0.028129727, -0.030628622, -0.013334822, 0.91433376, 0.40474156, 0.039390117, -0.40398294, 0.91391796, -0.49205542, 3.8819163, -2.222578)
+light_energy = 4.0
+area_range = 15.0
+area_size = Vector2(3, 3)
+
+[node name="AreaLight3D2" type="AreaLight3D" parent="." index="3" unique_id=1706613667]
+transform = Transform3D(-0.24912204, 0.3889756, -0.8869252, -0.013334821, 0.9143339, 0.40474167, 0.96838033, 0.112657055, -0.2225938, -5.007539, 3.8819163, -13.519196)
+light_energy = 4.0
+area_range = 15.0
+area_size = Vector2(3, 3)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="4" unique_id=1360225236]
+environment = SubResource("Environment_eb5j2")
