@@ -16,7 +16,7 @@ extends Control
 
 const IDLE_ANIM: Animation = preload("res://assets/animations/IdleMixamoAnimation.res")
 
-const CAM_POS_NORMAL := Vector3(1.0, 1.7, 1.05)
+const CAM_POS_NORMAL := Vector3(0.75, 1.7, 1.15)
 const CAM_ROT_NORMAL := Vector3(-20.0, 45.0, 0.0)
 
 const CAM_POS_CHOOSING := Vector3(2.3, 1.4, 2.4)
